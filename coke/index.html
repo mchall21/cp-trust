@@ -574,59 +574,85 @@
                 grid-template-columns: 1fr;
             }
 
-            /* Timeline - cleaner mobile layout */
+            /* Timeline - simplified card layout for mobile */
             .timeline-section {
-                padding: 3rem 1rem;
+                padding: 3rem 1.5rem;
+            }
+
+            .timeline-header h2 {
+                font-size: 2rem;
+            }
+
+            .timeline-container {
+                max-width: 100%;
             }
 
             .timeline-row {
                 flex-direction: column;
-                margin-bottom: 2rem;
-                padding-bottom: 1.5rem;
+                margin-bottom: 1.5rem;
+                padding: 1.5rem;
+                background: white;
+                border-left: 4px solid var(--coke-red);
+                border-bottom: none;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             }
 
             .timeline-date {
                 text-align: left;
-                padding-right: 0;
-                padding-bottom: 0.5rem;
-                border-right: none;
-                border-bottom: 3px solid var(--coke-red);
-                margin-bottom: 1rem;
-                font-size: 1.3rem;
+                padding: 0;
+                padding-bottom: 0.75rem;
+                border: none;
+                margin-bottom: 0.75rem;
+                font-size: 1.5rem;
+                color: var(--coke-red);
+                border-bottom: 2px solid var(--georgia-green);
+                display: inline-block;
             }
 
             .timeline-content {
-                padding-left: 0;
+                padding: 0;
             }
 
             .timeline-content h3 {
-                font-size: 1.2rem;
-                margin-bottom: 0.75rem;
+                font-size: 1.1rem;
+                margin-bottom: 0.5rem;
+                color: var(--georgia-green);
             }
 
             .timeline-content p {
                 font-size: 0.95rem;
+                line-height: 1.6;
+                margin-bottom: 0.5rem;
             }
 
-            /* Founders - better mobile grid */
+            /* Founders - simple list layout on mobile */
             .founders-section {
-                padding: 3rem 1rem;
+                padding: 3rem 1.5rem;
+            }
+
+            .founders-section h2 {
+                font-size: 2rem;
             }
 
             .founders-grid {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-                max-width: 400px;
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+                max-width: 100%;
                 margin: 2rem auto;
             }
 
             .founder-badge {
                 width: auto;
                 height: auto;
-                min-height: 120px;
-                padding: 1rem 0.5rem;
-                font-size: 0.9rem;
+                min-height: auto;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                font-size: 1rem;
+                background: var(--vintage-cream);
+                border: 2px solid var(--georgia-green);
+                display: block;
+                text-align: center;
             }
 
             /* Donate section */

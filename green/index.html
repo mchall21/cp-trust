@@ -670,6 +670,17 @@
                 image-rendering: crisp-edges;
             }
 
+            /* Fix parallax images on mobile */
+            .parallax-break {
+                background-attachment: scroll !important;
+                height: 300px;
+                background-size: cover !important;
+            }
+
+            .hero {
+                background-attachment: scroll !important;
+            }
+
             /* Grid layouts */
             .intro-grid, .plans-grid, .action-section {
                 grid-template-columns: 1fr;
@@ -685,47 +696,59 @@
                 grid-template-columns: 1fr;
             }
 
-            /* Board members - Better mobile layout */
+            /* Board members - Simple list on mobile */
             .board-section {
-                padding: 3rem 1rem;
+                padding: 3rem 1.5rem;
+            }
+
+            .board-section .section-title h2 {
+                font-size: 2rem;
             }
 
             .board-list {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
+                display: flex;
+                flex-direction: column;
                 gap: 0.75rem;
-                max-width: 400px;
+                max-width: 100%;
                 margin: 2rem auto;
             }
 
             .board-member {
-                font-size: 0.85rem;
-                padding: 1rem 0.5rem;
+                font-size: 1rem;
+                padding: 1rem 1.5rem;
                 text-align: center;
                 border-radius: 8px;
             }
 
-            /* Timeline Mobile - Simplified vertical layout */
+            /* Timeline Mobile - Card-based layout */
             .timeline-section {
-                padding: 3rem 1rem;
+                padding: 3rem 1.5rem;
+            }
+
+            .timeline-section .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .timeline-container {
+                max-width: 100%;
             }
 
             .timeline-container::after {
-                left: 20px;
-                width: 3px;
+                display: none;
             }
 
             .timeline-item {
                 width: 100%;
-                padding-left: 50px;
-                padding-right: 15px;
-                padding-bottom: 1.5rem;
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+                background: white;
+                border-left: 4px solid var(--accent-orange);
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                border-radius: 0 8px 8px 0;
             }
 
             .timeline-item::after {
-                left: 13px;
-                width: 15px;
-                height: 15px;
+                display: none;
             }
 
             .timeline-item::before {
@@ -743,11 +766,28 @@
 
             .left::after,
             .right::after {
-                left: 13px;
+                display: none;
+            }
+
+            .content {
+                padding: 0;
+                background: transparent;
+                box-shadow: none;
             }
 
             .content h3 {
-                font-size: 1.3rem;
+                font-size: 1.4rem;
+                color: var(--primary-green);
+                margin-bottom: 0.75rem;
+                border-bottom: 2px solid var(--accent-gold);
+                padding-bottom: 0.5rem;
+                display: inline-block;
+            }
+
+            .content p {
+                font-size: 0.95rem;
+                margin-bottom: 0.5rem;
+                line-height: 1.6;
             }
 
             /* Ensure readable font sizes */
