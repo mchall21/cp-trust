@@ -1,6 +1,3 @@
 {
-  "rewrites": [
-    { "source": "/green", "destination": "/green/index.html" },
-    { "source": "/coke", "destination": "/coke/index.html" }
-  ]
+  "cleanUrls": true
 }
