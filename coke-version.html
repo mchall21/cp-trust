@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candler Park Golf Trust | Est. 1927</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Oswald:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- VARIABLES & THEME --- */
+        :root {
+            --coke-red: #D71920; /* Slightly deeper vintage red */
+            --georgia-green: #009C75; /* Classic bottle glass green */
+            --vintage-cream: #F7F2E3;
+            --ink-black: #1A1A1A;
+            --paper-white: #FFFFFF;
+            --max-width: 1100px;
+            
+            --font-script: 'Lobster', cursive;
+            --font-headline: 'Oswald', sans-serif;
+            --font-body: 'Playfair Display', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--vintage-cream);
+            color: var(--ink-black);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            border: 12px solid var(--coke-red); /* Frame the whole site like a poster */
+            min-height: 100vh;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3 {
+            text-transform: uppercase;
+            font-family: var(--font-headline);
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-family: var(--font-script); /* Coke-style script */
+            text-transform: none;
+            font-weight: 400;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+        }
+
+        a {
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .text-red { color: var(--coke-red); }
+        .text-green { color: var(--georgia-green); }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--coke-red);
+            color: var(--paper-white);
+            font-family: var(--font-headline);
+            text-transform: uppercase;
+            padding: 1rem 2.5rem;
+            border-radius: 50px; /* Bottle cap / pill shape */
+            font-weight: 700;
+            letter-spacing: 1px;
+            border: 2px solid var(--coke-red);
+            box-shadow: 0 4px 0 rgba(0,0,0,0.2); /* Vintage 3D press effect */
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            background-color: var(--paper-white);
+            color: var(--coke-red);
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 rgba(0,0,0,0.2);
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: var(--georgia-green);
+            color: white;
+            font-family: var(--font-headline);
+            padding: 0.25rem 1rem;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            letter-spacing: 2px;
+        }
+
+        /* --- HEADER --- */
+        nav {
+            padding: 1.5rem 0;
+            border-bottom: 2px solid rgba(0,0,0,0.1);
+            background: var(--vintage-cream);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-script);
+            font-size: 1.8rem;
+            color: var(--coke-red);
+        }
+
+        .nav-links a {
+            margin-left: 2rem;
+            font-family: var(--font-headline);
+            font-weight: 500;
+            color: var(--ink-black);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--coke-red);
+        }
+
+        /* --- HERO --- */
+        .hero {
+            position: relative;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            background-color: var(--coke-red);
+            color: white;
+            overflow: hidden;
+        }
+
+        /* The dynamic curve separator */
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: var(--vintage-cream);
+            border-radius: 100% 100% 0 0;
+            transform: scaleX(1.5);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 55%;
+            height: 100%;
+            background-image: url('../public/img/hero.webp');
+            background-size: cover;
+            background-position: center;
+            /* Vintage photo filter effect */
+            filter: sepia(0.3) contrast(1.1);
+            mask-image: linear-gradient(to right, transparent, black 20%);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 20%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            width: 50%;
+            padding-left: 2rem; /* Align with container */
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            line-height: 1;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+        }
+
+        .hero .tagline {
+            font-family: var(--font-headline);
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-left: 4px solid white;
+            padding-left: 1rem;
+        }
+
+        .hero p {
+            font-family: var(--font-body);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 450px;
+        }
+
+        /* --- GRID LAYOUT (NEWSPAPER STYLE) --- */
+        .grid-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border-bottom: 2px solid rgba(0,0,0,0.1);
+        }
+
+        .grid-panel {
+            padding: 5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .grid-panel.img-panel {
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            min-height: 500px;
+            border-left: 2px solid var(--vintage-cream);
+        }
+
+        /* --- HISTORY SECTION --- */
+        .history-section {
+            background-color: var(--vintage-cream);
+        }
+
+        .history-facts {
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .fact-card {
+            background: white;
+            padding: 1.5rem;
+            border: 1px solid #ddd;
+            text-align: center;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.05);
+        }
+
+        .fact-card h4 {
+            color: var(--coke-red);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- VISION / BOTTLE CURVE --- */
+        .vision-container {
+            background: var(--georgia-green);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        /* Decorative contour bottle shape/ribbon hint */
+        .vision-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: rgba(255,255,255,0.3);
+        }
+
+        .vision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: var(--max-width);
+            margin: 3rem auto 0;
+        }
+
+        .vision-item {
+            background: rgba(0,0,0,0.1);
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: 0.3s;
+        }
+
+        .vision-item:hover {
+            background: white;
+            color: var(--georgia-green);
+        }
+        
+        .vision-item h3 {
+            font-family: var(--font-script);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-transform: none;
+        }
+
+        /* --- TIMELINE (VINTAGE LIST) --- */
+        .timeline-section {
+            padding: 5rem 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .timeline-header h2 {
+            font-size: 3rem;
+            color: var(--coke-red);
+        }
+
+        .timeline-row {
+            display: flex;
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 2rem;
+        }
+
+        .timeline-date {
+            flex: 0 0 150px;
+            font-family: var(--font-headline);
+            font-size: 1.5rem;
+            color: var(--georgia-green);
+            font-weight: 700;
+            text-align: right;
+            padding-right: 2rem;
+            border-right: 2px solid var(--coke-red);
+        }
+
+        .timeline-content {
+            padding-left: 2rem;
+        }
+
+        /* --- FOUNDERS (CIRCLE BADGES) --- */
+        .founders-section {
+            background: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            border-top: 12px solid var(--coke-red); /* Stripe effect */
+            border-bottom: 12px solid var(--coke-red);
+        }
+
+        .founders-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .founder-badge {
+            width: 160px;
+            height: 160px;
+            background: var(--vintage-cream);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid var(--georgia-green);
+            font-family: var(--font-headline);
+            font-weight: 700;
+            color: var(--georgia-green);
+            text-transform: uppercase;
+            text-align: center;
+            padding: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* --- DONATE (POSTER STYLE) --- */
+        .donate-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: stretch;
+        }
+
+        .donate-info {
+            padding: 5rem;
+            background: var(--coke-red);
+            color: white;
+        }
+
+        .donate-action {
+            padding: 5rem;
+            background: var(--ink-black);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .donate-info h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .step-list {
+            margin-top: 2rem;
+        }
+        
+        .step-list li {
+            margin-bottom: 1rem;
+            font-family: var(--font-headline);
+            font-size: 1.2rem;
+            list-style-type: decimal;
+            margin-left: 1.5rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--vintage-cream);
+            padding: 3rem;
+            text-align: center;
+            font-family: var(--font-headline);
+            color: var(--coke-red);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            body { border-width: 6px; }
+            .hero { display: block; padding-top: 60px; min-height: auto; }
+            .hero-bg { position: relative; width: 100%; height: 300px; mask-image: none; -webkit-mask-image: none; }
+            .hero-content { width: 100%; padding: 2rem; text-align: center; background: var(--coke-red); }
+            .hero-content .tagline { border-left: none; border-bottom: 2px solid white; padding-left: 0; padding-bottom: 1rem; display: inline-block; }
+            
+            .grid-split, .donate-section { grid-template-columns: 1fr; }
+            .grid-panel.img-panel { min-height: 300px; }
+            
+            .history-facts { grid-template-columns: 1fr; }
+            .timeline-row { flex-direction: column; }
+            .timeline-date { text-align: left; padding-right: 0; padding-bottom: 0.5rem; border-right: none; border-bottom: 2px solid var(--coke-red); margin-bottom: 1rem; }
+            .timeline-content { padding-left: 0; }
+            
+            .hero h1 { font-size: 3.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">Candler Park Golf Trust</a>
+            <div class="nav-links">
+                <a href="#history">History</a>
+                <a href="#vision">Vision</a>
+                <a href="#timeline">Plan</a>
+                <a href="#donate" style="color: var(--coke-red); border: 2px solid var(--coke-red); padding: 0.5rem 1rem; border-radius: 30px;">Donate</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="tagline">Neighborhood Stewards</div>
+            <h1>The Real Thing.</h1>
+            <p>Restoring, reimagining, and caring for the historic 9-hole Candler Park Golf Course. Keeping it public, welcoming, and thriving for the next 100 years.</p>
+            <a href="#donate" class="btn">Support The Trust</a>
+        </div>
+        <div class="hero-bg"></div>
+    </header>
+
+    <!-- WHY IT MATTERS (Split Grid) -->
+    <section id="history" class="grid-split">
+        <div class="grid-panel">
+            <span class="section-badge">Since 1927</span>
+            <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">A Gift to the City</h2>
+            <p>Candler Park Golf Course was donated to the City of Atlanta by Coca-Cola founder <strong>Asa Candler</strong>. It opened in 1927 specifically so his daughter could play at a time when women were excluded from nearby private clubs.</p>
+            <p>Today, it remains one of the most casual and welcoming places to play golf in Atlanta—a true "muni" in the best sense of the word.</p>
+            
+            <div class="history-facts">
+                <div class="fact-card">
+                    <h4>1927</h4>
+                    <span>Founded</span>
+                </div>
+                <div class="fact-card">
+                    <h4>9</h4>
+                    <span>Holes</span>
+                </div>
+                <div class="fact-card">
+                    <h4>100%</h4>
+                    <span>Public</span>
+                </div>
+            </div>
+        </div>
+        <div class="grid-panel img-panel" style="background-image: url('../public/img/gallery-2.webp');"></div>
+    </section>
+
+    <!-- VISION (Georgia Green) -->
+    <section id="vision" class="vision-container">
+        <h2 style="font-size: 3rem;">A Refreshing Vision</h2>
+        <p style="max-width: 600px; margin: 0 auto;">We don't want to turn Candler Park into a country club. We want to make it the best version of what it already is.</p>
+        
+        <div class="vision-grid">
+            <div class="vision-item">
+                <h3>Immediately Accessible</h3>
+                <p>Affordable rates, walkable, and welcoming for first timers, families, and casual play.</p>
+            </div>
+            <div class="vision-item">
+                <h3>Fun at Every Level</h3>
+                <p>Architecturally thoughtful so beginners feel included and better players stay engaged.</p>
+            </div>
+            <div class="vision-item">
+                <h3>Community Integrated</h3>
+                <p>Neighborhood kids in the shop. Birthday parties on the patio. Coffee worth walking over for.</p>
+            </div>
+            <div class="vision-item">
+                <h3>Welcoming to Women</h3>
+                <p>Honoring the legacy of Asa Candler’s daughter with programming that gives women ownership.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SHORT RANGE PLANS -->
+    <section class="grid-split">
+        <div class="grid-panel img-panel" style="background-image: url('../public/img/gallery-3.webp'); order: 2;"></div> <!-- Swap order on desktop -->
+        <div class="grid-panel" style="order: 1;">
+            <span class="section-badge">Short Range Plan</span>
+            <h2 class="text-red">What We're Doing Now</h2>
+            <p>In the short term, our focus is on making the day-to-day better.</p>
+            
+            <div style="margin-top: 2rem;">
+                <h3 class="text-green">1. Patio Project</h3>
+                <p>Partnering with the city on a ~$100k renovation to turn the back of the clubhouse into a place people actually want to sit, linger, and host events.</p>
+                
+                <h3 class="text-green">2. Coffee & Pop Ups</h3>
+                <p>Bringing in local partners to run coffee mornings and casual food offerings that match the neighborhood vibe.</p>
+                
+                <h3 class="text-green">3. Annual Classic</h3>
+                <p>Growing the Candler Park Golf Classic as a signature neighborhood fundraiser.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section id="timeline" class="timeline-section">
+        <div class="timeline-header">
+            <h2>The Long Range View</h2>
+            <p>Building a sustainable future.</p>
+        </div>
+
+        <div class="timeline-row">
+            <div class="timeline-date">NOW</div>
+            <div class="timeline-content">
+                <h3>Formalize & Fix</h3>
+                <p>Establish 501(c)(3) status. Deliver the patio project. Start grounds improvements with volunteers.</p>
+            </div>
+        </div>
+
+        <div class="timeline-row">
+            <div class="timeline-date">2026</div>
+            <div class="timeline-content">
+                <h3>Plan & Program</h3>
+                <p>Run regular food/bev programs. Complete master planning with a golf course architect.</p>
+            </div>
+        </div>
+
+        <div class="timeline-row">
+            <div class="timeline-date">2027+</div>
+            <div class="timeline-content">
+                <h3>Invest & Build</h3>
+                <p>Launch $4M capital campaign. Begin phased course renovation including greens, tees, and bunkers.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOUNDERS -->
+    <section class="founders-section">
+        <h2 class="text-red">The Founding Board</h2>
+        <p>Neighbors. Parents. Regulars.</p>
+        <div class="founders-grid">
+            <div class="founder-badge">Greg<br>Hutchson</div>
+            <div class="founder-badge">Matthew<br>Hall</div>
+            <div class="founder-badge">Anna<br>Freeman</div>
+            <div class="founder-badge">Jeremy<br>Freeman</div>
+            <div class="founder-badge">Zac<br>Toy</div>
+            <div class="founder-badge">Ontario<br>Smith</div>
+        </div>
+    </section>
+
+    <!-- DONATE / CTA -->
+    <section id="donate" class="donate-section">
+        <div class="donate-info">
+            <h2>Help Us<br>Build It.</h2>
+            <p style="font-family: var(--font-headline); text-transform: uppercase; letter-spacing: 1px; opacity: 0.8;">Fiscal Sponsor: Park Pride</p>
+            <br>
+            <p>Until our own 501(c)(3) is live, Candler Park Golf Trust is fiscally sponsored by Park Pride.</p>
+        </div>
+        <div class="donate-action">
+            <h3 style="color: var(--vintage-cream);">How to Donate:</h3>
+            <ul class="step-list">
+                <li>Click the button below to visit Park Pride.</li>
+                <li>Select <strong>"City Golf"</strong> in the Park Name dropdown.</li>
+                <li>Write <strong>"For Candler Park Golf Course"</strong> in the comments.</li>
+            </ul>
+            <a href="https://parkpride.org/we-can-help/fiscal-sponsor/donate-to-a-local-park/" target="_blank" class="btn" style="text-align: center; background: white; color: var(--ink-black); border-color: white;">Make a Contribution</a>
+            
+            <div style="margin-top: 3rem; border-top: 1px solid #333; padding-top: 2rem;">
+                <p style="font-size: 0.9rem; color: #888;">Want to get involved with time instead of money?</p>
+                <a href="mailto:candlerparkgolftrust@gmail.com" style="color: white; text-decoration: underline;">candlerparkgolftrust@gmail.com</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        &copy; 2023 Candler Park Golf Trust | Atlanta, GA
+    </footer>
+
+</body>
+</html>
