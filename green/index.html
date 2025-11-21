@@ -169,6 +169,17 @@
             gap: 2rem;
         }
 
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
         .nav-links a {
             color: rgba(255,255,255,0.8);
             font-size: 0.9rem;
@@ -584,21 +595,169 @@
 
         /* --- RESPONSIVE MEDIA QUERIES --- */
         @media screen and (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .nav-links { display: none; } /* Simplified for single file, normally would have hamburger */
-            
+            /* Mobile Navigation */
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-logo img {
+                height: 40px;
+            }
+
+            .nav-logo-text {
+                font-size: 0.9rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 250px;
+                height: calc(100vh - 70px);
+                background: rgba(44, 74, 52, 0.98);
+                flex-direction: column;
+                padding: 2rem 1rem;
+                gap: 1.5rem;
+                transition: right 0.3s ease;
+                box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;
+                padding: 0.5rem 0;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .donate-nav-btn {
+                margin-top: 1rem;
+            }
+
+            /* Hero adjustments */
+            .hero {
+                padding-top: 70px;
+                min-height: 70vh;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .hero h3 {
+                font-size: 1.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            /* Section title adjustments */
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .section-title p {
+                font-size: 1rem;
+            }
+
+            /* Image quality - ensure sharp rendering */
+            img {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+            }
+
+            /* Grid layouts */
             .intro-grid, .plans-grid, .action-section {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
 
-            /* Timeline Mobile Fix */
-            .timeline-container::after { left: 31px; }
-            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
-            .timeline-item::after { left: 21px; }
-            .left::before, .right::before { left: 60px; border: medium solid white; border-width: 10px 10px 10px 0; border-color: transparent white transparent transparent; }
-            .right { left: 0%; }
-            .left::after, .right::after { left: 21px; }
+            .grid-panel {
+                padding: 2rem 1.5rem;
+            }
+
+            /* Vision cards */
+            .vision-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Board members - Better mobile layout */
+            .board-section {
+                padding: 3rem 1rem;
+            }
+
+            .board-list {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+                max-width: 400px;
+                margin: 2rem auto;
+            }
+
+            .board-member {
+                font-size: 0.85rem;
+                padding: 1rem 0.5rem;
+                text-align: center;
+                border-radius: 8px;
+            }
+
+            /* Timeline Mobile - Simplified vertical layout */
+            .timeline-section {
+                padding: 3rem 1rem;
+            }
+
+            .timeline-container::after {
+                left: 20px;
+                width: 3px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 50px;
+                padding-right: 15px;
+                padding-bottom: 1.5rem;
+            }
+
+            .timeline-item::after {
+                left: 13px;
+                width: 15px;
+                height: 15px;
+            }
+
+            .timeline-item::before {
+                display: none;
+            }
+
+            .left::before,
+            .right::before {
+                display: none;
+            }
+
+            .right {
+                left: 0%;
+            }
+
+            .left::after,
+            .right::after {
+                left: 13px;
+            }
+
+            .content h3 {
+                font-size: 1.3rem;
+            }
+
+            /* Ensure readable font sizes */
+            body {
+                font-size: 16px;
+            }
+
+            p {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -611,12 +770,15 @@
                 <img src="../public/logos/event-logo.png" alt="Candler Park Golf Trust Logo">
                 <span class="nav-logo-text">CANDLER PARK GOLF TRUST</span>
             </div>
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#vision">Vision</a>
-                <a href="#timeline">Timeline</a>
-                <a href="#get-involved">Get Involved</a>
-                <a href="#donate" class="donate-nav-btn">Donate</a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">
+                <span id="menu-icon">☰</span>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="#about" onclick="closeMenu()">About</a>
+                <a href="#vision" onclick="closeMenu()">Vision</a>
+                <a href="#timeline" onclick="closeMenu()">Timeline</a>
+                <a href="#get-involved" onclick="closeMenu()">Get Involved</a>
+                <a href="#donate" class="donate-nav-btn" onclick="closeMenu()">Donate</a>
             </div>
         </div>
     </nav>
@@ -837,10 +999,37 @@
     <!-- FOOTER -->
     <footer>
         <div class="container">
-            <p>&copy; 2023 Candler Park Golf Trust. All rights reserved.</p>
+            <p>&copy; 2025 Candler Park Golf Trust. All rights reserved.</p>
             <p>Candler Park Golf Course - Atlanta, GA</p>
         </div>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const menuIcon = document.getElementById('menu-icon');
+            navLinks.classList.toggle('active');
+            menuIcon.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        }
+
+        function closeMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const menuIcon = document.getElementById('menu-icon');
+            navLinks.classList.remove('active');
+            menuIcon.textContent = '☰';
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const navLinks = document.getElementById('navLinks');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+
+            if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+    </script>
 
 </body>
 </html>

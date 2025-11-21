@@ -150,6 +150,18 @@
             color: var(--coke-red);
         }
 
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: 2px solid var(--coke-red);
+            color: var(--coke-red);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            z-index: 101;
+        }
+
         /* --- HERO --- */
         .hero {
             position: relative;
@@ -446,21 +458,186 @@
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            body { border-width: 6px; }
-            .hero { display: block; padding-top: 60px; min-height: auto; }
-            .hero-bg { position: relative; width: 100%; height: 300px; mask-image: none; -webkit-mask-image: none; }
-            .hero-content { width: 100%; padding: 2rem; text-align: center; background: var(--coke-red); }
-            .hero-content .tagline { border-left: none; border-bottom: 2px solid white; padding-left: 0; padding-bottom: 1rem; display: inline-block; }
-            
-            .grid-split, .donate-section { grid-template-columns: 1fr; }
-            .grid-panel.img-panel { min-height: 300px; }
-            
-            .history-facts { grid-template-columns: 1fr; }
-            .timeline-row { flex-direction: column; }
-            .timeline-date { text-align: left; padding-right: 0; padding-bottom: 0.5rem; border-right: none; border-bottom: 2px solid var(--coke-red); margin-bottom: 1rem; }
-            .timeline-content { padding-left: 0; }
-            
-            .hero h1 { font-size: 3.5rem; }
+            body {
+                border-width: 6px;
+                font-size: 16px;
+            }
+
+            /* Mobile Navigation */
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .logo {
+                font-size: 1.4rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 250px;
+                height: calc(100vh - 70px);
+                background: var(--vintage-cream);
+                display: flex;
+                flex-direction: column;
+                padding: 2rem 1rem;
+                gap: 0;
+                transition: right 0.3s ease;
+                box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+                border-left: 3px solid var(--coke-red);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                margin-left: 0;
+                padding: 1rem 0;
+                font-size: 1.1rem;
+                border-bottom: 1px solid rgba(0,0,0,0.1);
+            }
+
+            /* Image quality */
+            img {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+            }
+
+            /* Hero adjustments */
+            .hero {
+                display: block;
+                padding-top: 70px;
+                min-height: auto;
+            }
+
+            .hero-bg {
+                position: relative;
+                width: 100%;
+                height: 300px;
+                mask-image: none;
+                -webkit-mask-image: none;
+            }
+
+            .hero-content {
+                width: 100%;
+                padding: 2rem 1.5rem;
+                text-align: center;
+                background: var(--coke-red);
+            }
+
+            .hero-content .tagline {
+                border-left: none;
+                border-bottom: 2px solid white;
+                padding-left: 0;
+                padding-bottom: 1rem;
+                display: inline-block;
+                font-size: 1.1rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            /* Grid layouts */
+            .grid-split,
+            .donate-section {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-panel {
+                padding: 3rem 1.5rem;
+            }
+
+            .grid-panel.img-panel {
+                min-height: 300px;
+                order: 1 !important;
+            }
+
+            /* History section */
+            .history-facts {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            /* Vision section */
+            .vision-container {
+                padding: 4rem 1.5rem;
+            }
+
+            .vision-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Timeline - cleaner mobile layout */
+            .timeline-section {
+                padding: 3rem 1rem;
+            }
+
+            .timeline-row {
+                flex-direction: column;
+                margin-bottom: 2rem;
+                padding-bottom: 1.5rem;
+            }
+
+            .timeline-date {
+                text-align: left;
+                padding-right: 0;
+                padding-bottom: 0.5rem;
+                border-right: none;
+                border-bottom: 3px solid var(--coke-red);
+                margin-bottom: 1rem;
+                font-size: 1.3rem;
+            }
+
+            .timeline-content {
+                padding-left: 0;
+            }
+
+            .timeline-content h3 {
+                font-size: 1.2rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .timeline-content p {
+                font-size: 0.95rem;
+            }
+
+            /* Founders - better mobile grid */
+            .founders-section {
+                padding: 3rem 1rem;
+            }
+
+            .founders-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                max-width: 400px;
+                margin: 2rem auto;
+            }
+
+            .founder-badge {
+                width: auto;
+                height: auto;
+                min-height: 120px;
+                padding: 1rem 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            /* Donate section */
+            .donate-info,
+            .donate-action {
+                padding: 3rem 1.5rem;
+            }
+
+            .donate-info h2 {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
@@ -469,11 +646,14 @@
     <nav>
         <div class="container">
             <a href="#" class="logo">Candler Park Golf Trust</a>
-            <div class="nav-links">
-                <a href="#history">History</a>
-                <a href="#vision">Vision</a>
-                <a href="#timeline">Plan</a>
-                <a href="#donate" style="color: var(--coke-red); border: 2px solid var(--coke-red); padding: 0.5rem 1rem; border-radius: 30px;">Donate</a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">
+                <span id="menu-icon">☰</span>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="#history" onclick="closeMenu()">History</a>
+                <a href="#vision" onclick="closeMenu()">Vision</a>
+                <a href="#timeline" onclick="closeMenu()">Plan</a>
+                <a href="#donate" onclick="closeMenu()" style="color: var(--coke-red); border: 2px solid var(--coke-red); padding: 0.5rem 1rem; border-radius: 30px;">Donate</a>
             </div>
         </div>
     </nav>
@@ -633,8 +813,34 @@
 
     <!-- FOOTER -->
     <footer>
-        &copy; 2023 Candler Park Golf Trust | Atlanta, GA
+        &copy; 2025 Candler Park Golf Trust | Atlanta, GA
     </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const menuIcon = document.getElementById('menu-icon');
+            navLinks.classList.toggle('active');
+            menuIcon.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        }
+
+        function closeMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const menuIcon = document.getElementById('menu-icon');
+            navLinks.classList.remove('active');
+            menuIcon.textContent = '☰';
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const navLinks = document.getElementById('navLinks');
+
+            if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+    </script>
 
 </body>
 </html>
