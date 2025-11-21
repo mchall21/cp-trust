@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candler Park Golf Trust - Choose Your View</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #2C4A34 0%, #4A6B53 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 900px;
+            text-align: center;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .option-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #222;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .option-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .option-card h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .green-card h2 {
+            color: #2C4A34;
+        }
+
+        .coke-card h2 {
+            color: #D71920;
+        }
+
+        .option-card p {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Candler Park Golf Trust</h1>
+        <p>We're exploring two design directions. Which one speaks to you?</p>
+
+        <div class="options">
+            <a href="/green" class="option-card green-card">
+                <h2>Green Version</h2>
+                <p>Classic forest theme with warm autumn tones</p>
+            </a>
+
+            <a href="/coke" class="option-card coke-card">
+                <h2>Coke Version</h2>
+                <p>Vintage Coca-Cola inspired design honoring Asa Candler</p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
